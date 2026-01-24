@@ -1,0 +1,8 @@
+{
+  "name": "Blueprint Empire",
+  "description": "An AI-powered command center for architects of future cinema. Generate complete movie blueprints including scripts, posters, and teasers.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
