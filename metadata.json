@@ -1,6 +1,6 @@
 {
-  "name": "Blueprint Empire",
-  "description": "An AI-powered command center for architects of future cinema. Generate complete movie blueprints including scripts, posters, and teasers.",
+  "name": "Butch Blueprint",
+  "description": "An AI-powered command center for architects of future cinema. Created by Luther. Generate complete movie blueprints including scripts, posters, and teasers.",
   "requestFramePermissions": [
     "camera",
     "microphone"
