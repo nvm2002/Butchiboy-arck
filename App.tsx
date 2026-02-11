@@ -4,7 +4,14 @@ import { MovieBlueprint, GenerationStep, TeaserSettings } from './types';
 import { GeminiService } from './geminiService';
 import BlueprintViewer from './components/BlueprintViewer';
 import GeneratorForm from './components/GeneratorForm';
-import { Layout, Film, Cpu, Zap, Globe, ShieldCheck, AlertCircle, X, TrendingUp, Key, Radio, MapPin } from 'lucide-react';
+import LYWFManifesto from './components/LYWFManifesto';
+import SignalFeed from './components/SignalFeed';
+import EmpireFutureCheque from './components/EmpireFutureCheque';
+import Horse2002Heritage from './components/Horse2002Heritage';
+import ResinEmpire from './components/ResinEmpire';
+import TaylorGangPartnership from './components/TaylorGangPartnership';
+import EmpireWisdom from './components/EmpireWisdom';
+import { Layout, Film, Cpu, Zap, Globe, ShieldCheck, AlertCircle, X, TrendingUp, Key, Radio, MapPin, ChevronDown } from 'lucide-react';
 
 const App: React.FC = () => {
   const [apiKeySelected, setApiKeySelected] = useState<boolean>(false);
@@ -21,7 +28,7 @@ const App: React.FC = () => {
         const hasKey = await window.aistudio.hasSelectedApiKey();
         setApiKeySelected(hasKey);
       } else {
-        setApiKeySelected(true); 
+        setApiKeySelected(true);
       }
     };
     checkKey();
@@ -38,10 +45,10 @@ const App: React.FC = () => {
   };
 
   const generateEmpire = async (
-    userPrompt: string, 
-    includeVideo: boolean, 
-    teaserSettings: TeaserSettings, 
-    territory: string, 
+    userPrompt: string,
+    includeVideo: boolean,
+    teaserSettings: TeaserSettings,
+    territory: string,
     isPatternBreaker: boolean,
     visualDNA: { pacing: number; colorSaturation: number; darkness: number; complexity: number }
   ) => {
@@ -50,19 +57,20 @@ const App: React.FC = () => {
       if (includeVideo && !apiKeySelected) {
         // @ts-ignore
         if (window.aistudio?.openSelectKey) {
-           setError("Billboard PH Satellite requires an active API key.");
-           await window.aistudio.openSelectKey();
-           setApiKeySelected(true);
+          setError("Billboard PH Satellite requires an active API key.");
+          // @ts-ignore
+          await window.aistudio.openSelectKey();
+          setApiKeySelected(true);
         } else {
-           setError("Signal restricted. Connect satellite first.");
-           return;
+          setError("Signal restricted. Connect satellite first.");
+          return;
         }
       }
 
       const service = new GeminiService();
       setStep(GenerationStep.ANALYZING);
       setLoadingMessage("Locating Barangay 12 Coordinates...");
-      
+
       setStep(GenerationStep.DRAFTING);
       setLoadingMessage("Synchronizing Billboard PH Strategy...");
       const newBlueprint = await service.generateMovieBlueprint(userPrompt, territory, isPatternBreaker, visualDNA);
@@ -103,7 +111,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen blueprint-grid relative overflow-hidden flex flex-col">
       <div className="scanline"></div>
-      
+
       <header className="border-b border-red-900/30 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -117,57 +125,75 @@ const App: React.FC = () => {
               <p className="text-[10px] text-slate-500 uppercase tracking-widest mono">Barangay 12 Hub • Horse 2002</p>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={handleSelectKey}
-              className={`flex items-center gap-2 px-4 py-1.5 border rounded-full text-xs font-bold transition-all ${
-                apiKeySelected 
-                ? 'bg-green-500/10 border-green-500/30 text-green-500' 
+              className={`flex items-center gap-2 px-4 py-1.5 border rounded-full text-xs font-bold transition-all ${apiKeySelected
+                ? 'bg-green-500/10 border-green-500/30 text-green-500'
                 : 'bg-red-500/10 border-red-500/30 text-red-500 animate-pulse'
-              }`}
+                }`}
             >
               <Key className="w-4 h-4" />
               {apiKeySelected ? 'HEGEMONY ACTIVE' : 'CONNECT SATELLITE'}
             </button>
+            <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-[10px] font-black text-yellow-500 mono uppercase tracking-widest">
+              LYWF PROTOCOL: VIBE CHECKED
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-8 flex flex-col gap-8">
+      <main className="flex-1 w-full flex flex-col">
         {!blueprint && step === GenerationStep.IDLE ? (
-          <div className="max-w-2xl mx-auto w-full mt-12 flex flex-col gap-12">
-            <div className="text-center space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full text-[10px] font-black text-red-500 mono uppercase tracking-widest">
-                <MapPin className="w-3 h-3" /> BARANGAY 12 • CALOOCAN SOUTH
+          <>
+            <div className="max-w-7xl mx-auto w-full px-4 py-32 flex flex-col items-center gap-12 text-center min-h-[90vh] justify-center">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full text-[10px] font-black text-red-500 mono uppercase tracking-widest">
+                  <MapPin className="w-3 h-3" /> BARANGAY 12 • CALOOCAN SOUTH
+                </div>
+                <h2 className="text-7xl md:text-9xl font-black text-white leading-[0.85] uppercase italic tracking-tighter">
+                  Billboard <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">Philippines</span>
+                </h2>
+                <p className="max-w-2xl mx-auto text-slate-400 text-xl font-medium leading-relaxed">
+                  103 Libis Talisay Dulo, Barangay 12. Ralph Luther Maypa's Empire Command.
+                  Generate missions, distribute aid, dominate the global feed.
+                </p>
+
+                <div className="pt-8 max-w-2xl mx-auto w-full">
+                  <GeneratorForm onGenerate={generateEmpire} isGenerating={step !== GenerationStep.IDLE} />
+                </div>
               </div>
-              <h2 className="text-5xl md:text-7xl font-black text-white leading-none uppercase italic">
-                Billboard <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-500">Philippines</span>
-              </h2>
-              <p className="text-slate-400 text-lg">
-                103 Libis Talisay Dulo, Barangay 12. Ralph Luther Maypa's Empire Command. 
-                Generate missions, distribute aid, dominate the global feed.
-              </p>
+
+              <div className="mt-12 animate-bounce opacity-40">
+                <ChevronDown className="w-8 h-8 text-white" />
+              </div>
             </div>
-            
-            <div className="space-y-4">
-              <GeneratorForm onGenerate={generateEmpire} isGenerating={step !== GenerationStep.IDLE} />
-            </div>
-          </div>
+
+            <SignalFeed />
+            <Horse2002Heritage />
+            <LYWFManifesto />
+            <ResinEmpire />
+            <TaylorGangPartnership />
+            <EmpireWisdom />
+            <EmpireFutureCheque />
+          </>
         ) : (
-          <BlueprintViewer 
-            blueprint={blueprint} 
-            step={step} 
-            onReset={() => { setBlueprint(null); setStep(GenerationStep.IDLE); }} 
-          />
+          <div className="max-w-7xl mx-auto w-full px-4 py-8">
+            <BlueprintViewer
+              blueprint={blueprint}
+              step={step}
+              onReset={() => { setBlueprint(null); setStep(GenerationStep.IDLE); }}
+            />
+          </div>
         )}
 
         {error && (
           <div className="fixed bottom-8 left-1/2 -translate-x-1/2 p-4 bg-red-500/10 border border-red-500/30 text-red-500 rounded-lg backdrop-blur-md z-[100] flex items-center gap-3 max-w-[90vw] shadow-2xl">
             <AlertCircle className="w-5 h-5 flex-shrink-0" />
             <span className="text-sm font-bold uppercase mono text-[10px]">{error}</span>
-            <button onClick={() => setError(null)} className="ml-2 hover:text-white"><X className="w-4 h-4"/></button>
+            <button onClick={() => setError(null)} className="ml-2 hover:text-white"><X className="w-4 h-4" /></button>
           </div>
         )}
       </main>

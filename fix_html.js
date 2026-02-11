@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+import fs from 'fs';
+const content = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -47,4 +48,5 @@ body { font-family: "Space Grotesk", sans-serif; background-color: #020617; colo
 <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>
-</html>
+</html>`;
+fs.writeFileSync('index.html', content);
