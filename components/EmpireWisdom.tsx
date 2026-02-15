@@ -20,7 +20,7 @@ const EmpireWisdom: React.FC = () => {
 
                     <div className="relative">
                         <span className="absolute -top-12 -left-8 text-9xl text-yellow-500/10 font-serif leading-none">"</span>
-                        <blockquote className="text-3xl md:text-5xl font-black text-white italic tracking-tight leading-tight max-w-4xl">
+                        <blockquote className="text-3xl md:text-5xl font-black text-white italic tracking-tight leading-tight max-w-4xl font-orbitron">
                             Money wrongly gained will <span className="text-red-500 underline decoration-red-500/50 underline-offset-8">disappear bit by bit</span>;
                             money earned little by little will <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 italic">grow and grow</span>.
                         </blockquote>

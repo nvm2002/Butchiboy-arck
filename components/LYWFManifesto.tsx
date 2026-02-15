@@ -14,11 +14,12 @@ const LYWFManifesto: React.FC = () => {
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="text-center mb-16 space-y-4">
                     <h2 className="text-[10px] font-black tracking-[0.5em] text-red-500 uppercase mono">The LYWF Protocol</h2>
-                    <h3 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-none">
-                        Living <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">Young, Wild & Free</span>
+                    <h3 className="text-6xl md:text-9xl font-black text-white italic tracking-tighter uppercase leading-none font-orbitron">
+                        Living <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500 animate-gradient">Young, Wild & Free</span>
                     </h3>
-                    <p className="max-w-2xl mx-auto text-slate-400 text-lg font-medium">
-                        The fundamental philosophy of the BUTCH Empire. We don't just build; we celebrate. We don't just win; we uplift.
+                    <p className="max-w-2xl mx-auto text-slate-400 text-lg font-medium leading-relaxed">
+                        Ang fundamental philosophy ng BUTCH Empire. We don't just build; we celebrate.
+                        We don't just win; we uplift the whole community from Barangay 12 to the world.
                     </p>
                 </div>
 
@@ -26,19 +27,19 @@ const LYWFManifesto: React.FC = () => {
                     <ManifestoCard
                         icon={<Sparkles className="w-8 h-8 text-yellow-500" />}
                         title="Young"
-                        description="Perpetual innovation. A mindset that refuses to age. We stay hungry, we stay curious, and we keep the energy of the first day."
+                        description="Perpetual innovation. Isang mindset na hindi tumatanda. Nanatiling gutom, nanatiling mausisa, at laging bitbit ang energy ng day one synergy."
                         stats="24/7 INNOVATION"
                     />
                     <ManifestoCard
                         icon={<Zap className="w-8 h-8 text-red-500" />}
                         title="Wild"
-                        description="Unconstrained creativity. We break the patterns of the global market. Our strategies are bold, disruptive, and unapologetically visionary."
+                        description="Unconstrained creativity. Binabasag natin ang pattern ng global market. Ang ating mga estratehiya ay matapang, disruptive, at unapologetically visionary."
                         stats="PATTERN BREAKER"
                     />
                     <ManifestoCard
                         icon={<Globe className="w-8 h-8 text-cyan-500" />}
                         title="Free"
-                        description="Economic and creative sovereignty. We empower Barangay 12 and the Taylor Gang network to build their own destiny without limits."
+                        description="Economic and creative sovereignty. Binibigyan natin ng tunay na kapangyarihan ang Barangay 12 at ang Taylor Gang network na itayo ang sariling destiny nang walang limitasyon."
                         stats="SOVEREIGN PROTOCOL"
                     />
                 </div>
@@ -49,18 +50,18 @@ const LYWFManifesto: React.FC = () => {
                             <Rocket className="w-10 h-10 text-white" />
                         </div>
                         <div>
-                            <h4 className="text-2xl font-black text-white italic tracking-tight uppercase">Empire Mission 2025</h4>
+                            <h4 className="text-2xl font-black text-white italic tracking-tight uppercase font-orbitron">Empire Mission 2025</h4>
                             <p className="text-slate-500 text-sm mono uppercase tracking-widest">Target: Global Signal Dominance</p>
                         </div>
                     </div>
                     <div className="flex flex-wrap justify-center gap-4">
                         <div className="px-6 py-3 bg-red-500/10 border border-red-500/30 rounded-xl">
-                            <span className="block text-[8px] mono text-slate-500 uppercase tracking-widest font-black">Community Growth</span>
-                            <span className="text-xl font-bold text-red-500 tracking-tighter uppercase">Barangay 12</span>
+                            <span className="block text-[8px] mono text-slate-500 uppercase tracking-widest font-black">Community Hub</span>
+                            <span className="text-xl font-bold text-red-500 tracking-tighter uppercase font-orbitron">BGY 12</span>
                         </div>
                         <div className="px-6 py-3 bg-yellow-500/10 border border-yellow-500/30 rounded-xl">
-                            <span className="block text-[8px] mono text-slate-500 uppercase tracking-widest font-black">Global Partner</span>
-                            <span className="text-xl font-bold text-yellow-500 tracking-tighter uppercase">Taylor Gang</span>
+                            <span className="block text-[8px] mono text-slate-500 uppercase tracking-widest font-black">Global Alliance</span>
+                            <span className="text-xl font-bold text-yellow-500 tracking-tighter uppercase font-orbitron">TAYLOR GANG</span>
                         </div>
                     </div>
                 </div>
@@ -77,7 +78,7 @@ const ManifestoCard: React.FC<{ icon: React.ReactNode; title: string; descriptio
             {icon}
         </div>
         <div className="space-y-3">
-            <h4 className="text-3xl font-black text-white italic tracking-tighter uppercase">{title}</h4>
+            <h4 className="text-3xl font-black text-white italic tracking-tighter uppercase font-orbitron">{title}</h4>
             <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
         </div>
         <div className="mt-auto pt-6 border-t border-slate-800 w-full">
@@ -94,14 +95,14 @@ const ThankYouSection: React.FC = () => (
                 <Shield className="w-6 h-6 text-yellow-500 absolute -bottom-2 -right-2" />
             </div>
         </div>
-        <h3 className="text-5xl font-black text-white italic uppercase tracking-tighter mb-6">
+        <h3 className="text-5xl font-black text-white italic uppercase tracking-tighter mb-6 font-orbitron">
             Thank You <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">All</span>
         </h3>
         <p className="max-w-xl mx-auto text-slate-400 text-sm leading-relaxed uppercase tracking-widest font-bold">
             To the visionaries of Barangay 12 and the Taylor Gang network.
             Your loyalty is our strength. Your freedom is our mission.
         </p>
-        <div className="mt-12 flex justify-center gap-8 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="mt-12 flex justify-center gap-8 opacity-30 grayscale hover:grayscale-0 transition-all duration-500 font-orbitron">
             <span className="text-[10px] font-black mono text-white tracking-[0.5em]">B12</span>
             <span className="text-[10px] font-black mono text-white tracking-[0.5em]">TG</span>
             <span className="text-[10px] font-black mono text-white tracking-[0.5em]">BUTCH</span>

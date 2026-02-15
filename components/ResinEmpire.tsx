@@ -20,13 +20,13 @@ const ResinEmpire: React.FC = () => {
                             <span className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.3em] mono">Division: Advanced Polymers</span>
                         </div>
 
-                        <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-[0.85]">
+                        <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-[0.85] font-orbitron">
                             Butch <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">Resin Tech</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600">RESIN TECH</span>
                         </h2>
 
                         <p className="text-xl text-slate-400 font-medium leading-relaxed">
-                            The material backbone of the 2030 Empire. From high-performance gaming hardware to sustainable disaster-relief housing in Dagat-Dagatan, we are casting the future in resin.
+                            Ang material backbone ng 2030 Global Empire. From high-performance gaming hardware to sustainable disaster-relief housing sa Dagat-Dagatan, we are casting the future in premium resin nodes. This is sovereign engineering for the masa.
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

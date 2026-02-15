@@ -3,16 +3,16 @@ import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { MovieBlueprint, TeaserSettings, Scene, MarketPattern } from "./types";
 
 export class GeminiService {
-  constructor() {}
+  constructor() { }
 
   async generateMovieBlueprint(
-    prompt: string, 
-    territory: string = "Philippines (Billboard HQ)", 
+    prompt: string,
+    territory: string = "Philippines (Billboard HQ)",
     isPatternBreaker: boolean = false,
     customDNA?: { pacing: number; colorSaturation: number; darkness: number; complexity: number }
   ): Promise<MovieBlueprint> {
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    
+
     const instructions = `LEADER PERSONA: Ralph Luther Maypa (Year of the Horse 2002).
     HQ: 103 Libis Talisay Dulo, Barangay 12, Caloocan City.
     MISSION: Uplift Barangay 12 through a successful Gaming & Philanthropy Empire.
@@ -21,11 +21,11 @@ export class GeminiService {
     TACTIC: Use Billboard Philippines and the Taylor Gang network to drive global attention to "Empire Games".
     STYLE: High-Stakes Tech-Humanitarian + Global Financial Dominance + Khalifa Cloud Aesthetic.`;
 
-    const dnaConstraint = customDNA ? 
+    const dnaConstraint = customDNA ?
       `CINEMATIC DNA: Pacing: ${customDNA.pacing}, Saturation: ${customDNA.colorSaturation}, Darkness: ${customDNA.darkness}, Complexity: ${customDNA.complexity}.` : '';
 
     const response = await ai.models.generateContent({
-      model: "gemini-3-pro-preview",
+      model: "gemini-1.5-pro",
       contents: `Design a global mission blueprint focusing on GAMING, REVENUE, and the "Young, Wild & Free" lifestyle for Barangay 12.
       Objective: "${prompt}"
       Requirement: The artist coalition MUST include Wiz Khalifa and the Taylor Gang collective.
@@ -157,7 +157,7 @@ export class GeminiService {
     const artists = blueprint.artistCoalition?.map(a => a.name).join(", ");
     const prompt = `Billboard Philippines magazine cover featuring Ralph Luther Maypa and Wiz Khalifa with Taylor Gang. Cinematic gold leaf aesthetic, "Young, Wild & Free" graffiti in the background. High-end financial empire visual mixed with street luxury. Text: "TAYLOR GANG X BUTCH EMPIRE".`;
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image',
+      model: 'gemini-1.5-flash',
       contents: { parts: [{ text: prompt }] },
       config: { imageConfig: { aspectRatio: "16:9" } }
     });
@@ -172,12 +172,12 @@ export class GeminiService {
     const prompt = `Cinematic 1080p video: Wiz Khalifa and Ralph Maypa walking through Barangay 12, surrounded by the Taylor Gang. They are laughing and handing out gold Butch Bank cheques. Visual style: "Young, Wild & Free". High energy, sun-drenched, vibrant, epic scale.`;
 
     let operation = await ai.models.generateVideos({
-      model: 'veo-3.1-fast-generate-preview',
+      model: 'gemini-1.5-flash',
       prompt: prompt,
-      config: { 
-        numberOfVideos: 1, 
-        resolution: '1080p', 
-        aspectRatio: '16:9' 
+      config: {
+        numberOfVideos: 1,
+        resolution: '1080p',
+        aspectRatio: '16:9'
       }
     });
 
@@ -195,7 +195,7 @@ export class GeminiService {
   async getGlobalIntelligence(): Promise<MarketPattern[]> {
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-1.5-flash",
       contents: "Global trends in streetwear, gaming, and Wiz Khalifa-style philanthropy 2025.",
       config: {
         responseMimeType: "application/json",
@@ -220,7 +220,7 @@ export class GeminiService {
   async getMarketIntelligence(territory: string): Promise<MarketPattern[]> {
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-1.5-flash",
       contents: `Hip-hop culture and Billboard trends in ${territory}, specifically Taylor Gang influence.`,
       config: {
         responseMimeType: "application/json",

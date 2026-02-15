@@ -44,13 +44,13 @@ const TaylorGangPartnership: React.FC = () => {
                             <span className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.3em] mono">Alliance: Global Culture Node</span>
                         </div>
 
-                        <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-[0.85]">
+                        <h2 className="text-6xl md:text-8xl font-black text-white italic tracking-tighter uppercase leading-[0.85] font-orbitron">
                             Taylor Gang <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 animate-gradient">Coalition</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 animate-gradient">COALITION</span>
                         </h2>
 
                         <p className="text-xl text-slate-400 font-medium leading-relaxed">
-                            We've partnered with Wiz Khalifa and the Taylor Gang network to merge street luxury with high-stakes humanitarian impact. This is where global influence meets Barangay 12 grit.
+                            We've partnered with Wiz Khalifa and the Taylor Gang network to merge street luxury with high-stakes humanitarian impact. This is the rurok of global influence meeting Barangay 12 grit for the ultimate community upliftment.
                         </p>
 
                         <div className="space-y-4">

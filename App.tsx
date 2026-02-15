@@ -11,6 +11,7 @@ import Horse2002Heritage from './components/Horse2002Heritage';
 import ResinEmpire from './components/ResinEmpire';
 import TaylorGangPartnership from './components/TaylorGangPartnership';
 import EmpireWisdom from './components/EmpireWisdom';
+import LaunchStrategicBoard from './components/LaunchStrategicBoard';
 import { Layout, Film, Cpu, Zap, Globe, ShieldCheck, AlertCircle, X, TrendingUp, Key, Radio, MapPin, ChevronDown } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -22,9 +23,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const checkKey = async () => {
-      // @ts-ignore
       if (window.aistudio?.hasSelectedApiKey) {
-        // @ts-ignore
         const hasKey = await window.aistudio.hasSelectedApiKey();
         setApiKeySelected(hasKey);
       } else {
@@ -35,9 +34,7 @@ const App: React.FC = () => {
   }, []);
 
   const handleSelectKey = async () => {
-    // @ts-ignore
     if (window.aistudio?.openSelectKey) {
-      // @ts-ignore
       await window.aistudio.openSelectKey();
       setApiKeySelected(true);
       setError(null);
@@ -55,10 +52,8 @@ const App: React.FC = () => {
     try {
       setError(null);
       if (includeVideo && !apiKeySelected) {
-        // @ts-ignore
         if (window.aistudio?.openSelectKey) {
           setError("Billboard PH Satellite requires an active API key.");
-          // @ts-ignore
           await window.aistudio.openSelectKey();
           setApiKeySelected(true);
         } else {
@@ -148,21 +143,46 @@ const App: React.FC = () => {
         {!blueprint && step === GenerationStep.IDLE ? (
           <>
             <div className="max-w-7xl mx-auto w-full px-4 py-32 flex flex-col items-center gap-12 text-center min-h-[90vh] justify-center">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full text-[10px] font-black text-red-500 mono uppercase tracking-widest">
-                  <MapPin className="w-3 h-3" /> BARANGAY 12 • CALOOCAN SOUTH
+              <div className="space-y-6 animate-fade-up">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full text-[10px] font-black text-red-500 mono uppercase tracking-widest neon-glow-red">
+                  <MapPin className="w-3 h-3" /> BARANGAY 12 • CALOOCAN SOUTH HUB
                 </div>
-                <h2 className="text-7xl md:text-9xl font-black text-white leading-[0.85] uppercase italic tracking-tighter">
+                <h2 className="text-7xl md:text-9xl font-black text-white leading-[0.85] uppercase italic tracking-tighter font-orbitron">
                   Billboard <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">Philippines</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-gradient">PHILIPPINES</span>
                 </h2>
-                <p className="max-w-2xl mx-auto text-slate-400 text-xl font-medium leading-relaxed">
-                  103 Libis Talisay Dulo, Barangay 12. Ralph Luther Maypa's Empire Command.
-                  Generate missions, distribute aid, dominate the global feed.
+                <p className="max-w-3xl mx-auto text-slate-400 text-xl font-medium leading-relaxed">
+                  Ang rurok ng street luxury meets high-stakes humanitarian impact.
+                  <span className="text-white"> 103 Libis Talisay Dulo.</span> Ralph Luther Maypa's Sovereign Command.
+                  Synchronizing global revenue points for the upliftment of the masa.
                 </p>
 
                 <div className="pt-8 max-w-2xl mx-auto w-full">
                   <GeneratorForm onGenerate={generateEmpire} isGenerating={step !== GenerationStep.IDLE} />
+                </div>
+              </div>
+
+              {/* Community Success Feed */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl mt-12">
+                <div className="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-md">
+                  <TrendingUp className="w-5 h-5 text-green-500 mb-2 mx-auto" />
+                  <p className="text-[9px] text-slate-500 uppercase mono font-black">Community ROI</p>
+                  <p className="text-2xl font-black text-white font-orbitron italic">+420%</p>
+                </div>
+                <div className="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-md">
+                  <Globe className="w-5 h-5 text-blue-500 mb-2 mx-auto" />
+                  <p className="text-[9px] text-slate-500 uppercase mono font-black">Global Signal</p>
+                  <p className="text-2xl font-black text-white font-orbitron italic">ACTIVE</p>
+                </div>
+                <div className="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-md">
+                  <ShieldCheck className="w-5 h-5 text-red-500 mb-2 mx-auto" />
+                  <p className="text-[9px] text-slate-500 uppercase mono font-black">Security Protocol</p>
+                  <p className="text-2xl font-black text-white font-orbitron italic">V.12B</p>
+                </div>
+                <div className="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl backdrop-blur-md">
+                  <Zap className="w-5 h-5 text-yellow-500 mb-2 mx-auto" />
+                  <p className="text-[9px] text-slate-500 uppercase mono font-black">Horse 2002 Energy</p>
+                  <p className="text-2xl font-black text-white font-orbitron italic">MAX</p>
                 </div>
               </div>
 
@@ -173,6 +193,7 @@ const App: React.FC = () => {
 
             <SignalFeed />
             <Horse2002Heritage />
+            <LaunchStrategicBoard />
             <LYWFManifesto />
             <ResinEmpire />
             <TaylorGangPartnership />
