@@ -30,6 +30,7 @@
     "node_modules",
     "dist",
     "index.html",
-    "fix_html.js"
+    "fix_html.js",
+    "desktop-tutorial"
   ]
 }

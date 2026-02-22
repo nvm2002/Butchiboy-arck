@@ -12,7 +12,17 @@ import ResinEmpire from './components/ResinEmpire';
 import TaylorGangPartnership from './components/TaylorGangPartnership';
 import EmpireWisdom from './components/EmpireWisdom';
 import LaunchStrategicBoard from './components/LaunchStrategicBoard';
-import { Layout, Film, Cpu, Zap, Globe, ShieldCheck, AlertCircle, X, TrendingUp, Key, Radio, MapPin, ChevronDown } from 'lucide-react';
+import MasterTiming from './components/MasterTiming';
+import SuccessBlueprintModule from './components/SuccessBlueprintModule';
+import EmpireVaultModule from './components/EmpireVaultModule';
+import InstagramBusinessBasic from './components/InstagramBusinessBasic';
+import EmpireLeaderboard from './components/EmpireLeaderboard';
+import MetaIndustrySatellite from './components/MetaIndustrySatellite';
+import ButchBankLedger from './components/ButchBankLedger';
+import ButchKartProject from './components/ButchKartProject';
+import GameMastery from './components/GameMastery';
+import UpworkThumbnail from './components/UpworkThumbnail';
+import { Layout, Film, Cpu, Zap, Globe, ShieldCheck, AlertCircle, X, TrendingUp, Key, Radio, MapPin, ChevronDown, Camera } from 'lucide-react';
 
 const App: React.FC = () => {
   const [apiKeySelected, setApiKeySelected] = useState<boolean>(false);
@@ -20,6 +30,7 @@ const App: React.FC = () => {
   const [step, setStep] = useState<GenerationStep>(GenerationStep.IDLE);
   const [error, setError] = useState<string | null>(null);
   const [loadingMessage, setLoadingMessage] = useState<string>('');
+  const [showThumbnail, setShowThumbnail] = useState<boolean>(false);
 
   useEffect(() => {
     const checkKey = async () => {
@@ -51,6 +62,8 @@ const App: React.FC = () => {
   ) => {
     try {
       setError(null);
+      const apiKey = (import.meta as any).env.VITE_API_KEY || (import.meta as any).env.GEMINI_API_KEY || "";
+
       if (includeVideo && !apiKeySelected) {
         if (window.aistudio?.openSelectKey) {
           setError("Billboard PH Satellite requires an active API key.");
@@ -68,7 +81,7 @@ const App: React.FC = () => {
 
       setStep(GenerationStep.DRAFTING);
       setLoadingMessage("Synchronizing Billboard PH Strategy...");
-      const newBlueprint = await service.generateMovieBlueprint(userPrompt, territory, isPatternBreaker, visualDNA);
+      const newBlueprint = await service.generateBlueprint(userPrompt, territory, isPatternBreaker, visualDNA);
       setBlueprint(newBlueprint);
 
       setStep(GenerationStep.RENDERING_POSTER);
@@ -117,7 +130,7 @@ const App: React.FC = () => {
               <h1 className="text-xl font-bold tracking-tighter text-white uppercase mono">
                 BUTCH <span className="text-red-500">SIGNAL</span>
               </h1>
-              <p className="text-[10px] text-slate-500 uppercase tracking-widest mono">Barangay 12 Hub • Horse 2002</p>
+              <p className="text-[10px] text-slate-500 uppercase tracking-widest mono">Barangay 12 Hub • Horse 2002 • Cashflow Domination</p>
             </div>
           </div>
 
@@ -135,6 +148,13 @@ const App: React.FC = () => {
             <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-yellow-500/10 border border-yellow-500/30 rounded-full text-[10px] font-black text-yellow-500 mono uppercase tracking-widest">
               LYWF PROTOCOL: VIBE CHECKED
             </div>
+            <button
+              onClick={() => setShowThumbnail(!showThumbnail)}
+              className="p-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 hover:text-white hover:border-white/20 transition-all"
+              title="Generate Upwork Thumbnail"
+            >
+              <Camera className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </header>
@@ -192,6 +212,15 @@ const App: React.FC = () => {
             </div>
 
             <SignalFeed />
+            <ButchKartProject />
+            <InstagramBusinessBasic />
+            <EmpireLeaderboard />
+            <GameMastery />
+            <MetaIndustrySatellite />
+            <ButchBankLedger />
+            <SuccessBlueprintModule />
+            <EmpireVaultModule />
+            <MasterTiming />
             <Horse2002Heritage />
             <LaunchStrategicBoard />
             <LYWFManifesto />
@@ -243,6 +272,20 @@ const App: React.FC = () => {
           &copy; 2025 Global Signal Protocol • Ralph Luther Maypa • Barangay 12
         </p>
       </footer>
+
+      {showThumbnail && (
+        <div className="fixed inset-0 z-[200] bg-black overflow-y-auto">
+          <div className="absolute top-10 right-10 z-[210]">
+            <button
+              onClick={() => setShowThumbnail(false)}
+              className="p-4 bg-red-600 rounded-full text-white shadow-2xl hover:scale-110 transition-transform"
+            >
+              <X className="w-8 h-8" />
+            </button>
+          </div>
+          <UpworkThumbnail />
+        </div>
+      )}
     </div>
   );
 };

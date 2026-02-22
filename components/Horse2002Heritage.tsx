@@ -29,7 +29,7 @@ const Horse2002Heritage: React.FC = () => {
 
                         <div className="grid grid-cols-2 gap-4">
                             <Trait badge="STRENGTH" title="Relentless Drive" desc="Unstoppable momentum in Gaming & Philanthropy." />
-                            <Trait badge="LOALTY" title="Empire Core" desc="Rooted in the soil of Barangay 12, Caloocan." />
+                            <Trait badge="LOYALTY" title="Empire Core" desc="Rooted in the soil of Barangay 12, Caloocan." />
                             <Trait badge="VISION" title="Prophetic" desc="Seeing the 2030 liquidity before it manifests." />
                             <Trait badge="FREEDOM" title="LYWF Spirit" desc="Living Young, Wild & Free by design." />
                         </div>

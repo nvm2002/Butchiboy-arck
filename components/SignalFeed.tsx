@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { Radio, MapPin, Zap, Heart, DollarSign, Activity, Users } from 'lucide-react';
+import { Radio, MapPin, Zap, Heart, DollarSign, Activity, Users, Github } from 'lucide-react';
+import { GitHubService } from '../githubService';
 
 interface SignalEvent {
     id: string;
-    type: 'AID' | 'REVENUE' | 'SIGNAL' | 'GAME';
+    type: 'AID' | 'REVENUE' | 'SIGNAL' | 'GAME' | 'GITHUB' | 'COMMUNITY';
     message: string;
     location: string;
     timestamp: string;
@@ -20,7 +21,8 @@ const SignalFeed: React.FC = () => {
         "Caloocan South Node",
         "Dagat-Dagatan Hub",
         "Billboard PH Satellite",
-        "Taylor Gang HQ (Relay)"
+        "Taylor Gang HQ (Relay)",
+        "GitHub Community Node"
     ];
 
     const mockMessages = [
@@ -28,7 +30,9 @@ const SignalFeed: React.FC = () => {
         { type: 'REVENUE', msg: "Ad revenue sync completed", val: "+$12.5k" },
         { type: 'SIGNAL', msg: "Viral hook detected in trend feed", val: "99% Resonance" },
         { type: 'GAME', msg: "Empire Games: New session peak", val: "4.2k Users" },
-        { type: 'AID', msg: "Scholarship fund allocated", val: "10 Recipients" }
+        { type: 'AID', msg: "Scholarship fund allocated", val: "10 Recipients" },
+        { type: 'COMMUNITY', msg: "Author Check: New Loyalist Verified", val: "WELCOME" },
+        { type: 'COMMUNITY', msg: "First Time Discussion Detected", val: "TRIGGERED" }
     ];
 
     useEffect(() => {
@@ -43,17 +47,39 @@ const SignalFeed: React.FC = () => {
         }));
         setEvents(initialEvents);
 
+        const fetchGitHubSignal = async () => {
+            const githubEvents = await GitHubService.getGlobalResonance();
+            if (githubEvents && githubEvents.length > 0) {
+                const latest = githubEvents[0];
+                const newEvent: SignalEvent = {
+                    id: latest.id,
+                    type: 'GITHUB',
+                    message: `Global Dev Pulse: ${latest.type}`,
+                    location: `GitHub Global Node (${latest.actor.login})`,
+                    timestamp: new Date().toLocaleTimeString(),
+                    value: "RES-99"
+                };
+                setEvents(prev => [newEvent, ...prev.slice(0, 5)]);
+            }
+        };
+
         const interval = setInterval(() => {
-            const randomMsg = mockMessages[Math.floor(Math.random() * mockMessages.length)];
-            const newEvent: SignalEvent = {
-                id: Math.random().toString(36).substr(2, 9),
-                type: randomMsg.type as any,
-                message: randomMsg.msg,
-                location: mockLocations[Math.floor(Math.random() * mockLocations.length)],
-                timestamp: new Date().toLocaleTimeString(),
-                value: randomMsg.val
-            };
-            setEvents(prev => [newEvent, ...prev.slice(0, 5)]);
+            const shouldFetchGitHub = Math.random() > 0.5;
+
+            if (shouldFetchGitHub) {
+                fetchGitHubSignal();
+            } else {
+                const randomMsg = mockMessages[Math.floor(Math.random() * mockMessages.length)];
+                const newEvent: SignalEvent = {
+                    id: Math.random().toString(36).substr(2, 9),
+                    type: randomMsg.type as any,
+                    message: randomMsg.msg,
+                    location: mockLocations[Math.floor(Math.random() * mockLocations.length)],
+                    timestamp: new Date().toLocaleTimeString(),
+                    value: randomMsg.val
+                };
+                setEvents(prev => [newEvent, ...prev.slice(0, 5)]);
+            }
         }, 4000);
 
         return () => clearInterval(interval);
@@ -97,21 +123,27 @@ const SignalFeed: React.FC = () => {
                         >
                             <div className="flex items-center gap-4">
                                 <div className={`w-2 h-2 rounded-full animate-pulse ${event.type === 'AID' ? 'bg-cyan-500' :
-                                        event.type === 'REVENUE' ? 'bg-green-500' :
-                                            event.type === 'SIGNAL' ? 'bg-red-500' : 'bg-yellow-500'
+                                    event.type === 'REVENUE' ? 'bg-green-500' :
+                                        event.type === 'GITHUB' ? 'bg-purple-500' :
+                                            event.type === 'COMMUNITY' ? 'bg-blue-500' :
+                                                event.type === 'SIGNAL' ? 'bg-red-500' : 'bg-yellow-500'
                                     }`}></div>
-                                <div>
-                                    <p className="text-sm font-bold text-white uppercase">{event.message}</p>
-                                    <div className="flex items-center gap-2 mt-1">
-                                        <MapPin className="w-3 h-3 text-slate-600" />
-                                        <span className="text-[9px] mono text-slate-600 uppercase font-black">{event.location}</span>
+                                <div className="flex items-center gap-3">
+                                    {(event.type === 'GITHUB' || event.type === 'COMMUNITY') && <Github className={`w-4 h-4 ${event.type === 'GITHUB' ? 'text-purple-500' : 'text-blue-500'}`} />}
+                                    <div>
+                                        <p className="text-sm font-bold text-white uppercase">{event.message}</p>
+                                        <div className="flex items-center gap-2 mt-1">
+                                            <MapPin className="w-3 h-3 text-slate-600" />
+                                            <span className="text-[9px] mono text-slate-600 uppercase font-black">{event.location}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-6 mt-4 md:mt-0">
                                 {event.value && (
                                     <span className={`text-xs font-black mono px-3 py-1 rounded-lg ${event.type === 'REVENUE' ? 'bg-green-500/10 text-green-500' :
-                                            event.type === 'AID' ? 'bg-cyan-500/10 text-cyan-500' :
+                                        event.type === 'AID' ? 'bg-cyan-500/10 text-cyan-500' :
+                                            event.type === 'COMMUNITY' ? 'bg-blue-500/10 text-blue-500' :
                                                 'bg-slate-800 text-slate-400'
                                         }`}>
                                         {event.value}
@@ -122,8 +154,22 @@ const SignalFeed: React.FC = () => {
                         </div>
                     ))}
                 </div>
-            </div>
-        </div>
+
+                <div className="mt-8 pt-8 border-t border-slate-800/50 flex flex-col items-center gap-4">
+                    <button
+                        onClick={async () => {
+                            const greeting = await GitHubService.getOctocatGreeting();
+                            alert(greeting);
+                        }}
+                        className="flex items-center gap-2 px-6 py-2 bg-purple-500/10 border border-purple-500/30 rounded-xl text-[10px] font-black text-purple-500 uppercase tracking-widest hover:bg-purple-500 hover:text-white transition-all group"
+                    >
+                        <Github className="w-4 h-4" />
+                        Verify Global Node Connection
+                    </button>
+                    <p className="text-[8px] text-slate-600 mono uppercase tracking-[0.2em]">Cross-continental handshake verified by Octocat protocol</p>
+                </div>
+            </div >
+        </div >
     );
 };
 

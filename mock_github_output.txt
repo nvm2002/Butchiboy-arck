@@ -1,0 +1,3 @@
+should_welcome=false
+status=error
+reason=graphql_error

@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "instagram_business_basic": "node scripts/instagram_protocol.js",
+    "instagram_business_content_publish": "node scripts/instagram_protocol.js --mode=publish",
+    "instagram_business_manage_messages": "node scripts/instagram_protocol.js --mode=messages",
+    "instagram_business_manage_comments": "node scripts/instagram_protocol.js --mode=comments"
   },
   "dependencies": {
     "@google/genai": "^1.37.0",
